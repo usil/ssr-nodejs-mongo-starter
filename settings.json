@@ -1,0 +1,6 @@
+{
+  "port": "${PORT}",
+  "mongoUrl": "${MONGO_URL}",
+  "sessionSecret": "notSecret",
+  "adminPassword": "123456"
+}

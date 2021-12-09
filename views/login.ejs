@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/bs/bootstrap.min.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="login-body">
+      <div>
+        <% if(typeof alerts != 'undefined') { %> <% alerts.forEach(err => { %>
+        <div class="alert alert-warning" role="alert">
+          <%= `${err.msg} for the ${err.param}` %>
+        </div>
+        <% }) %> <% } %>
+        <span style="margin: 1px"></span>
+        <div class="login-card">
+          <form action="/api/login" method="post" class="row g-3">
+            <div class="col-12">
+              <label for="username" class="form-label">Username</label>
+              <input
+                name="username"
+                required
+                type="text"
+                class="form-control"
+                id="username"
+              />
+            </div>
+            <div class="col-12">
+              <label for="password" class="form-label">Password</label>
+              <input
+                required
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+              />
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn submit-btn">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

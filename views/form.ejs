@@ -1,0 +1,53 @@
+<div class="row g-3">
+  <h2>Template Mongo Form</h2>
+  <form class="col">
+    <input
+      required
+      type="text"
+      class="form-control"
+      placeholder="Name"
+      aria-label="Name"
+      name="name"
+      id="name"
+    />
+    <div class="col-12">
+      <button type="submit" id="sendMongo" class="btn submit-btn">
+        Send To Mongo
+      </button>
+    </div>
+  </form>
+  <div id="savedAlert" class="alert alert-info" role="alert">Saved</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#savedAlert').hide();
+    var form = $('form');
+    console.log(form);
+
+    form.on('submit', submitHandler);
+
+    function submitHandler(e) {
+      e.preventDefault();
+      // DO POST
+      $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: window.location + '/../../api/name',
+        data: JSON.stringify({
+          name: $('#name').val(),
+        }),
+      })
+        .done((res) => {
+          console.log(res);
+          $('#savedAlert').text(
+            `SAVED: ${res.result.name} AT ${res.result.createdAt}`,
+          );
+          $('#savedAlert').show();
+        })
+        .fail(function (xhr, status, error) {
+          alert(xhr.responseText);
+        });
+    }
+  });
+</script>
